@@ -74,3 +74,6 @@ cat ${WORKING_PATH}/spicardcommands | parallel -j 3
  echo ${indexcomm2} >> $WORKING_PATH/sindexcommands
  echo ${indexcomm3} >> $WORKING_PATH/sindexcommands
  cat ${WORKING_PATH}/sindexcommands | parallel -j 3 
+ 
+ 
+ 
