@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# module load parallel
-
 orig_S1_R1=s_s1r1Fastq
 orig_S1_R2=s_s1r2Fastq
 
