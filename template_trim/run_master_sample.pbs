@@ -49,11 +49,24 @@ timecheck=`(date +"Date: %Y-%m-%d Time %H:%M:%S")`;
 mkdir ${working_dir}/javatmp
 
 export PARALLEL="--env _JAVA_OPTIONS=-Djava.io.tmpdir=/mnt/tmp/tso_launcher_v3.0.0/javatmp"
-
+  
+ grep "ND" ${working_dir}/downoption_file > /dev/null 2>&1
+ if [ "$?" = "0" ]; then  # not down-sampling   
+   echo "No down sampling fastq"
    echo "sh ${working_dir}/control_pileup.sh" > ${working_dir}/MappingCommands
    echo "sh ${working_dir}/sample_pileup.sh" >> ${working_dir}/MappingCommands
    parallel -j 2 --joblog ${working_dir}/mapping_jobs_log < MappingCommands 
    wait;
+   echo "Finished control and sample pileup" >> $working_dir/completed.txt
+  else    # down sampling the fastq
+   echo "Down sampling fastq"
+   echo "sh ${working_dir}/control_pileup_ds.sh" > ${working_dir}/MappingCommands
+   echo "sh ${working_dir}/sample_pileup_ds.sh" >> ${working_dir}/MappingCommands
+   parallel -j 1 --joblog ${working_dir}/mapping_jobs_log < MappingCommands 
+   wait;
+  echo "Finished control and sample down sampling pileup" >> $working_dir/completed.txt
+  fi
+  
   
    ln -s ${working_dir}/*.bam $working_dir_g7/
    ln -s ${working_dir}/*.bam $working_dir_g6/    
