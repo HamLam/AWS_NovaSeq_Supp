@@ -928,24 +928,25 @@ echo -n "Finished move_plots.pl " >> $working_dir/time_check
 timecheck=`(date +"%Y-%m-%d [ %H:%M:%S ]")`;
 echo ${timecheck} >> $working_dir/time_check
 
-grep "cnv2vcf.py" $working_dir/completed.txt > /dev/null 2>&1
-if [ "$?" = "0" ]; then
-    echo "cnv2vcf.py already run"
-else
-    echo "cnv2vcf.py"
-    python $script_path/cnv2vcf.py sample_name_cnv_calls_on_ordered_genes_$_now.txt 4 17 16 seq_db > sample_name_cnv.vcf
-    if [[ $? -ne 0 ]] ; then
-	echo "Run cnv2vcf.py failed" >&2
-	exit 1
-    else
-       echo "g2 cnv2vcf.py done"
-	echo "cnv2vcf.py" >> $working_dir/completed.txt
-    fi 
-fi
-echo -n "Finished cnv2vcf.py " >> $working_dir/time_check
-timecheck=`(date +"%Y-%m-%d [ %H:%M:%S ]")`;
-echo ${timecheck} >> $working_dir/time_check
+# grep "cnv2vcf.py" $working_dir/completed.txt > /dev/null 2>&1
+# if [ "$?" = "0" ]; then
+ #   echo "cnv2vcf.py already run"
+# else
+  #  echo "cnv2vcf.py"
+   # python $script_path/cnv2vcf.py sample_name_cnv_calls_on_ordered_genes_$_now.txt 4 17 16 seq_db > sample_name_cnv.vcf
+   # if [[ $? -ne 0 ]] ; then
+ #	echo "Run cnv2vcf.py failed" >&2
+ #	exit 1
+  #  else
+   #    echo "g2 cnv2vcf.py done"
+  #	echo "cnv2vcf.py" >> $working_dir/completed.txt
+   # fi 
+# fi
+# echo -n "Finished cnv2vcf.py " >> $working_dir/time_check
+# timecheck=`(date +"%Y-%m-%d [ %H:%M:%S ]")`;
+# echo ${timecheck} >> $working_dir/time_check
 
+touch sample_name_cnv.vcf
 if [ -s sample_name_cnv.vcf ]
 then
     cp  sample_name_cnv.vcf sample_result
