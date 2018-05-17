@@ -899,6 +899,7 @@ echo ${timecheck} >> $working_dir/time_check
 # timecheck=`(date +"%Y-%m-%d [ %H:%M:%S ]")`;
 # echo ${timecheck} >> $working_dir/time_check
 
+touch sample_name_cnv.vcf
 if [ -s sample_name_cnv.vcf ]
 then
     cp  sample_name_cnv.vcf sample_result
