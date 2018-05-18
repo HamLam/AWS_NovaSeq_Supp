@@ -541,7 +541,7 @@ else
   echo "Get_3_random_ref_genes" >> $working_dir/completed.txt
 
 fi
-chmod o+w $working_dir
+chmod o-w $working_dir
 
 grep "create_control_coverage.sql" $working_dir/completed.txt > /dev/null 2>&1
 if [ "$?" = "0" ]; then
