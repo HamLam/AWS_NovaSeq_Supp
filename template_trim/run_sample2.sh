@@ -885,7 +885,7 @@ else
 	mv $working_dir/completed.txt.tmp $working_dir/completed.txt
         echo "Empty cnv_calls file..RESTARTING cnv2"
 	rm $working_dir/*_t
-	rm $working_dir/sample_name_cnv_calls_on_ordered_genes_$_now.txt
+	# rm $working_dir/sample_name_cnv_calls_on_ordered_genes_$_now.txt
 	exit 1
 fi
 
